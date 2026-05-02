@@ -18,6 +18,16 @@ const app = express();
 // ── Connect to MongoDB ─────────────────────────────────────────────────────
 connectDB();
 
+// ── Instant Health Check for Railway ───────────────────────────────────────
+app.get("/health", (req, res) => res.status(200).send("OK"));
+app.get("/", (req, res) => {
+  if (process.env.NODE_ENV === "production") {
+    // We will serve the index.html below, but this ensures a response at /
+  } else {
+    res.send("API is running...");
+  }
+});
+
 // ── Global Middleware ──────────────────────────────────────────────────────
 app.use(cors({
   origin: process.env.CLIENT_URL || "http://localhost:5173",
