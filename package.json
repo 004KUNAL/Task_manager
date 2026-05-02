@@ -1,0 +1,16 @@
+{
+  "name": "team-task-manager-root",
+  "version": "1.0.0",
+  "scripts": {
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm install && npm run build && cd ../backend && npm install",
+    "start": "node backend/server.js"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "devDependencies": {}
+}
