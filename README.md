@@ -72,5 +72,16 @@ To get started with the Task Manager, please refer to the **Installation & Setup
 
 ---
 
+## 🚀 Deployment (Railway)
+
+This project is optimized for deployment on [Railway](https://railway.app/).
+
+1.  **Connect Repo:** Connect your GitHub repository to a new Railway project.
+2.  **Environment Variables:** Add `MONGO_URI`, `JWT_SECRET`, and `NODE_ENV=production` in the Railway dashboard.
+3.  **Automatic Build:** Railway will automatically run `npm run build` from the root, which builds the frontend and installs backend dependencies.
+4.  **Start:** The application will start using `node backend/server.js`, serving the frontend and API from a single service.
+
+---
+
 ## 🎤 Project Philosophy
 > *"This application uses a 'Push-Pull' delegation model. Admins can push tasks directly to members, or members can proactively 'Accept' unassigned tasks from the project pool. To solve the problem of data staleness, an auto-sync mechanism keeps the dashboard metrics live across all team roles without requiring manual refreshes."*
