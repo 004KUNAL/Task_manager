@@ -48,18 +48,7 @@ app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/notifications", notificationRoutes);
 
-// ── Serve Frontend in Production ──────────────────────────────────────────
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
-
-  app.get("(.*)", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "../", "frontend", "dist", "index.html"))
-  );
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is running...");
-  });
-}
+// The backend is now standalone (API only) as the frontend is hosted on Vercel.
 
 // ── 404 handler for unmatched routes ──────────────────────────────────────
 app.use((req, res) => {
