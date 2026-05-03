@@ -48,19 +48,11 @@ app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/notifications", notificationRoutes);
 
-// ── 404 handler for unmatched routes ──────────────────────────────────────
-app.use((req, res) => {
-  res.status(404).json({ success: false, message: "Route not found." });
-});
-
-// ── Centralized error handler (must be last) ───────────────────────────────
-app.use(errorHandler);
-
 // ── Serve Frontend in Production ──────────────────────────────────────────
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("*splat", (req, res) =>
+  app.get("*", (req, res) =>
     res.sendFile(path.resolve(__dirname, "../", "frontend", "dist", "index.html"))
   );
 } else {
@@ -68,6 +60,14 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running...");
   });
 }
+
+// ── 404 handler for unmatched routes ──────────────────────────────────────
+app.use((req, res) => {
+  res.status(404).json({ success: false, message: "Route not found." });
+});
+
+// ── Centralized error handler (must be last) ───────────────────────────────
+app.use(errorHandler);
 
 // ── Start Server ───────────────────────────────────────────────────────────
 const PORT = process.env.PORT || 5000;
