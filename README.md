@@ -72,14 +72,27 @@ To get started with the Task Manager, please refer to the **Installation & Setup
 
 ---
 
-## 🚀 Deployment (Railway)
+---
 
-This project is optimized for deployment on [Railway](https://railway.app/).
+## 🚀 Deployment
 
-1.  **Connect Repo:** Connect your GitHub repository to a new Railway project.
-2.  **Environment Variables:** Add `MONGO_URI`, `JWT_SECRET`, and `NODE_ENV=production` in the Railway dashboard.
-3.  **Automatic Build:** Railway will automatically run `npm run build` from the root, which builds the frontend and installs backend dependencies.
-4.  **Start:** The application will start using `node backend/server.js`, serving the frontend and API from a single service.
+This project is optimized for a high-performance, split-stack deployment:
+
+### 1. Backend (Render)
+*   **Platform:** [Render](https://render.com/)
+*   **Build Command:** `npm install`
+*   **Start Command:** `node server.js`
+*   **Config:** Set **Root Directory** to `backend`.
+
+### 2. Frontend (Vercel)
+*   **Platform:** [Vercel](https://vercel.com/)
+*   **Build Command:** `npm run build`
+*   **Output Directory:** `dist`
+*   **Config:** Set **Root Directory** to `frontend`.
+
+### 3. Environment Variables
+*   **Backend:** Add `MONGO_URI`, `JWT_SECRET`, `NODE_ENV=production`, and `CLIENT_URL` (your Vercel URL).
+*   **Frontend:** Add `VITE_API_URL` (your Render API URL).
 
 ---
 
